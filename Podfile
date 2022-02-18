@@ -6,5 +6,6 @@ target 'iTunesBasic' do
   use_frameworks!
 
   # Pods for iTunesBasic
+  pod 'Alamofire'
 
 end

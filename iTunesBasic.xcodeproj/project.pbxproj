@@ -12,6 +12,18 @@
 		18C506B627C00DDE0064B0EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18C506B527C00DDE0064B0EA /* Assets.xcassets */; };
 		18C506B927C00DDE0064B0EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18C506B727C00DDE0064B0EA /* LaunchScreen.storyboard */; };
 		18C506C127C00EF80064B0EA /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C506C027C00EF80064B0EA /* RootViewController.swift */; };
+		18C506C827C016960064B0EA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C506C727C016960064B0EA /* Extensions.swift */; };
+		18C506CA27C017F60064B0EA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C506C927C017F60064B0EA /* HomeViewController.swift */; };
+		18C506CC27C017FF0064B0EA /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C506CB27C017FF0064B0EA /* DetailViewController.swift */; };
+		18C506CF27C019320064B0EA /* XActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C506CD27C019320064B0EA /* XActivityView.swift */; };
+		18C506D027C019320064B0EA /* XActivityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C506CE27C019320064B0EA /* XActivityView.xib */; };
+		18C506D227C019B00064B0EA /* AppStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C506D127C019B00064B0EA /* AppStyle.swift */; };
+		18C506D827C01AD50064B0EA /* DancingScript-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18C506D427C01AD50064B0EA /* DancingScript-Medium.ttf */; };
+		18C506D927C01AD50064B0EA /* DancingScript-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18C506D527C01AD50064B0EA /* DancingScript-Regular.ttf */; };
+		18C506DA27C01AD50064B0EA /* DancingScript-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18C506D627C01AD50064B0EA /* DancingScript-SemiBold.ttf */; };
+		18C506DB27C01AD50064B0EA /* DancingScript-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18C506D727C01AD50064B0EA /* DancingScript-Bold.ttf */; };
+		18C506DD27C022740064B0EA /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C506DC27C022740064B0EA /* ServiceManager.swift */; };
+		18C506DF27C023810064B0EA /* DataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C506DE27C023810064B0EA /* DataModels.swift */; };
 		A824E8E3039EBCAD49FC62F3 /* Pods_iTunesBasic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1DB9EF1022F995C2783D4C3 /* Pods_iTunesBasic.framework */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +35,18 @@
 		18C506B827C00DDE0064B0EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18C506BA27C00DDE0064B0EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18C506C027C00EF80064B0EA /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		18C506C727C016960064B0EA /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		18C506C927C017F60064B0EA /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		18C506CB27C017FF0064B0EA /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		18C506CD27C019320064B0EA /* XActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XActivityView.swift; sourceTree = "<group>"; };
+		18C506CE27C019320064B0EA /* XActivityView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XActivityView.xib; sourceTree = "<group>"; };
+		18C506D127C019B00064B0EA /* AppStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStyle.swift; sourceTree = "<group>"; };
+		18C506D427C01AD50064B0EA /* DancingScript-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DancingScript-Medium.ttf"; sourceTree = "<group>"; };
+		18C506D527C01AD50064B0EA /* DancingScript-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DancingScript-Regular.ttf"; sourceTree = "<group>"; };
+		18C506D627C01AD50064B0EA /* DancingScript-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DancingScript-SemiBold.ttf"; sourceTree = "<group>"; };
+		18C506D727C01AD50064B0EA /* DancingScript-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DancingScript-Bold.ttf"; sourceTree = "<group>"; };
+		18C506DC27C022740064B0EA /* ServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
+		18C506DE27C023810064B0EA /* DataModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModels.swift; sourceTree = "<group>"; };
 		22CF6D9C187C8EB13DFAF227 /* Pods-iTunesBasic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTunesBasic.release.xcconfig"; path = "Target Support Files/Pods-iTunesBasic/Pods-iTunesBasic.release.xcconfig"; sourceTree = "<group>"; };
 		ADC78B1B47EDFF463191A989 /* Pods-iTunesBasic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTunesBasic.debug.xcconfig"; path = "Target Support Files/Pods-iTunesBasic/Pods-iTunesBasic.debug.xcconfig"; sourceTree = "<group>"; };
 		F1DB9EF1022F995C2783D4C3 /* Pods_iTunesBasic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iTunesBasic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -40,6 +64,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		184AF9C127C0332600FEFCD9 /* CollectionViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CollectionViews;
+			sourceTree = "<group>";
+		};
 		18C506A027C00DDB0064B0EA = {
 			isa = PBXGroup;
 			children = (
@@ -64,6 +95,11 @@
 				18C506AC27C00DDB0064B0EA /* AppDelegate.swift */,
 				18C506C027C00EF80064B0EA /* RootViewController.swift */,
 				18C506C227C00F110064B0EA /* Storyboards */,
+				18C506C327C0162B0064B0EA /* Controllers */,
+				18C506C427C016390064B0EA /* Views */,
+				18C506C527C016420064B0EA /* Models */,
+				18C506C627C016510064B0EA /* Helpers */,
+				18C506D327C01AC50064B0EA /* Fonts */,
 				18C506B527C00DDE0064B0EA /* Assets.xcassets */,
 				18C506BA27C00DDE0064B0EA /* Info.plist */,
 			);
@@ -77,6 +113,55 @@
 				18C506B727C00DDE0064B0EA /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		18C506C327C0162B0064B0EA /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				18C506C927C017F60064B0EA /* HomeViewController.swift */,
+				18C506CB27C017FF0064B0EA /* DetailViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		18C506C427C016390064B0EA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				18C506CD27C019320064B0EA /* XActivityView.swift */,
+				18C506CE27C019320064B0EA /* XActivityView.xib */,
+				184AF9C127C0332600FEFCD9 /* CollectionViews */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		18C506C527C016420064B0EA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				18C506DC27C022740064B0EA /* ServiceManager.swift */,
+				18C506DE27C023810064B0EA /* DataModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		18C506C627C016510064B0EA /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				18C506C727C016960064B0EA /* Extensions.swift */,
+				18C506D127C019B00064B0EA /* AppStyle.swift */,
+			);
+			name = Helpers;
+			path = Models;
+			sourceTree = "<group>";
+		};
+		18C506D327C01AC50064B0EA /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				18C506D727C01AD50064B0EA /* DancingScript-Bold.ttf */,
+				18C506D427C01AD50064B0EA /* DancingScript-Medium.ttf */,
+				18C506D527C01AD50064B0EA /* DancingScript-Regular.ttf */,
+				18C506D627C01AD50064B0EA /* DancingScript-SemiBold.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		B1A8475BC1BBB411DEA1125D /* Pods */ = {
@@ -107,6 +192,7 @@
 				18C506A527C00DDB0064B0EA /* Sources */,
 				18C506A627C00DDB0064B0EA /* Frameworks */,
 				18C506A727C00DDB0064B0EA /* Resources */,
+				92C5D4AD0515F5A149118A76 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -156,8 +242,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				18C506B927C00DDE0064B0EA /* LaunchScreen.storyboard in Resources */,
+				18C506DB27C01AD50064B0EA /* DancingScript-Bold.ttf in Resources */,
 				18C506B627C00DDE0064B0EA /* Assets.xcassets in Resources */,
+				18C506D027C019320064B0EA /* XActivityView.xib in Resources */,
+				18C506D827C01AD50064B0EA /* DancingScript-Medium.ttf in Resources */,
 				18C506B427C00DDB0064B0EA /* Main.storyboard in Resources */,
+				18C506D927C01AD50064B0EA /* DancingScript-Regular.ttf in Resources */,
+				18C506DA27C01AD50064B0EA /* DancingScript-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,6 +277,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		92C5D4AD0515F5A149118A76 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iTunesBasic/Pods-iTunesBasic-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iTunesBasic/Pods-iTunesBasic-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iTunesBasic/Pods-iTunesBasic-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -193,8 +301,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18C506DF27C023810064B0EA /* DataModels.swift in Sources */,
 				18C506C127C00EF80064B0EA /* RootViewController.swift in Sources */,
+				18C506C827C016960064B0EA /* Extensions.swift in Sources */,
+				18C506CC27C017FF0064B0EA /* DetailViewController.swift in Sources */,
+				18C506DD27C022740064B0EA /* ServiceManager.swift in Sources */,
 				18C506AD27C00DDB0064B0EA /* AppDelegate.swift in Sources */,
+				18C506CF27C019320064B0EA /* XActivityView.swift in Sources */,
+				18C506CA27C017F60064B0EA /* HomeViewController.swift in Sources */,
+				18C506D227C019B00064B0EA /* AppStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
