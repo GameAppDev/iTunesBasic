@@ -31,12 +31,15 @@ struct StoreResponse:Codable {
     let artistName:String?
     let collectionName:String?
     let trackName:String?
-    let artistViewUrl:String?
-    let collectionArtistViewUrl:String?
-    let collectionPrice:Int?
+    let artworkUrl100:String?
+    let collectionPrice:Double?
     let releaseDate:String?
     let country:String?
     let currency:String?
     let longDescription:String?
-    
+}
+
+struct Types {
+    let name:String!
+    var isSelected:Bool!
 }

@@ -7,5 +7,5 @@ target 'iTunesBasic' do
 
   # Pods for iTunesBasic
   pod 'Alamofire'
-
+  pod 'Kingfisher', '~> 6.0'
 end
