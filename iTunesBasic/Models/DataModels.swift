@@ -30,6 +30,7 @@ struct StoreResponse:Codable {
     let trackId:Int?
     let artistName:String?
     let collectionName:String?
+    let collectionCensoredName:String?
     let trackName:String?
     let artworkUrl100:String?
     let collectionPrice:Double?
@@ -37,6 +38,7 @@ struct StoreResponse:Codable {
     let country:String?
     let currency:String?
     let longDescription:String?
+    let collectionViewUrl:String?
 }
 
 struct Types {

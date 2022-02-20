@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		180AFBB627C104DB00E6CDF5 /* TypeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180AFBB427C104DB00E6CDF5 /* TypeCollectionViewCell.swift */; };
 		180AFBB727C104DB00E6CDF5 /* TypeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 180AFBB527C104DB00E6CDF5 /* TypeCollectionViewCell.xib */; };
+		18C1B80C27C252B200ED8860 /* ImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1B80A27C252B200ED8860 /* ImageTableViewCell.swift */; };
+		18C1B80D27C252B200ED8860 /* ImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C1B80B27C252B200ED8860 /* ImageTableViewCell.xib */; };
+		18C1B81027C255D500ED8860 /* TextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1B80E27C255D500ED8860 /* TextTableViewCell.swift */; };
+		18C1B81127C255D500ED8860 /* TextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C1B80F27C255D500ED8860 /* TextTableViewCell.xib */; };
+		18C1B81427C2602100ED8860 /* TextWithButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C1B81227C2602100ED8860 /* TextWithButtonTableViewCell.swift */; };
+		18C1B81527C2602100ED8860 /* TextWithButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C1B81327C2602100ED8860 /* TextWithButtonTableViewCell.xib */; };
 		18C506AD27C00DDB0064B0EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C506AC27C00DDB0064B0EA /* AppDelegate.swift */; };
 		18C506B427C00DDB0064B0EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18C506B227C00DDB0064B0EA /* Main.storyboard */; };
 		18C506B627C00DDE0064B0EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18C506B527C00DDE0064B0EA /* Assets.xcassets */; };
@@ -34,6 +40,12 @@
 /* Begin PBXFileReference section */
 		180AFBB427C104DB00E6CDF5 /* TypeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeCollectionViewCell.swift; sourceTree = "<group>"; };
 		180AFBB527C104DB00E6CDF5 /* TypeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TypeCollectionViewCell.xib; sourceTree = "<group>"; };
+		18C1B80A27C252B200ED8860 /* ImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTableViewCell.swift; sourceTree = "<group>"; };
+		18C1B80B27C252B200ED8860 /* ImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageTableViewCell.xib; sourceTree = "<group>"; };
+		18C1B80E27C255D500ED8860 /* TextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextTableViewCell.swift; sourceTree = "<group>"; };
+		18C1B80F27C255D500ED8860 /* TextTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextTableViewCell.xib; sourceTree = "<group>"; };
+		18C1B81227C2602100ED8860 /* TextWithButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextWithButtonTableViewCell.swift; sourceTree = "<group>"; };
+		18C1B81327C2602100ED8860 /* TextWithButtonTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextWithButtonTableViewCell.xib; sourceTree = "<group>"; };
 		18C506A927C00DDB0064B0EA /* iTunesBasic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTunesBasic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18C506AC27C00DDB0064B0EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18C506B327C00DDB0064B0EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -81,6 +93,19 @@
 				180AFBB527C104DB00E6CDF5 /* TypeCollectionViewCell.xib */,
 			);
 			path = CollectionViews;
+			sourceTree = "<group>";
+		};
+		18C1B80927C2529200ED8860 /* TableViews */ = {
+			isa = PBXGroup;
+			children = (
+				18C1B80A27C252B200ED8860 /* ImageTableViewCell.swift */,
+				18C1B80B27C252B200ED8860 /* ImageTableViewCell.xib */,
+				18C1B80E27C255D500ED8860 /* TextTableViewCell.swift */,
+				18C1B80F27C255D500ED8860 /* TextTableViewCell.xib */,
+				18C1B81227C2602100ED8860 /* TextWithButtonTableViewCell.swift */,
+				18C1B81327C2602100ED8860 /* TextWithButtonTableViewCell.xib */,
+			);
+			path = TableViews;
 			sourceTree = "<group>";
 		};
 		18C506A027C00DDB0064B0EA = {
@@ -142,6 +167,7 @@
 				18C506CD27C019320064B0EA /* XActivityView.swift */,
 				18C506CE27C019320064B0EA /* XActivityView.xib */,
 				184AF9C127C0332600FEFCD9 /* CollectionViews */,
+				18C1B80927C2529200ED8860 /* TableViews */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -253,10 +279,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18C1B81527C2602100ED8860 /* TextWithButtonTableViewCell.xib in Resources */,
 				18C506B927C00DDE0064B0EA /* LaunchScreen.storyboard in Resources */,
 				18C506DB27C01AD50064B0EA /* DancingScript-Bold.ttf in Resources */,
+				18C1B81127C255D500ED8860 /* TextTableViewCell.xib in Resources */,
 				18C506B627C00DDE0064B0EA /* Assets.xcassets in Resources */,
 				18C506D027C019320064B0EA /* XActivityView.xib in Resources */,
+				18C1B80D27C252B200ED8860 /* ImageTableViewCell.xib in Resources */,
 				180AFBB727C104DB00E6CDF5 /* TypeCollectionViewCell.xib in Resources */,
 				18C506D827C01AD50064B0EA /* DancingScript-Medium.ttf in Resources */,
 				18C506B427C00DDB0064B0EA /* Main.storyboard in Resources */,
@@ -317,6 +346,7 @@
 			files = (
 				180AFBB627C104DB00E6CDF5 /* TypeCollectionViewCell.swift in Sources */,
 				18C506DF27C023810064B0EA /* DataModels.swift in Sources */,
+				18C1B81427C2602100ED8860 /* TextWithButtonTableViewCell.swift in Sources */,
 				18C506C127C00EF80064B0EA /* RootViewController.swift in Sources */,
 				18C506C827C016960064B0EA /* Extensions.swift in Sources */,
 				18C506CC27C017FF0064B0EA /* DetailViewController.swift in Sources */,
@@ -324,6 +354,8 @@
 				18F6838627C0EAD90025FA21 /* ItemCollectionViewCell.swift in Sources */,
 				18C506AD27C00DDB0064B0EA /* AppDelegate.swift in Sources */,
 				18C506CF27C019320064B0EA /* XActivityView.swift in Sources */,
+				18C1B80C27C252B200ED8860 /* ImageTableViewCell.swift in Sources */,
+				18C1B81027C255D500ED8860 /* TextTableViewCell.swift in Sources */,
 				18C506CA27C017F60064B0EA /* HomeViewController.swift in Sources */,
 				18C506D227C019B00064B0EA /* AppStyle.swift in Sources */,
 			);

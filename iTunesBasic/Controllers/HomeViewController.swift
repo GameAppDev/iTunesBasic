@@ -106,6 +106,7 @@ class HomeViewController: UIViewController {
         searchTF.resignFirstResponder()
         searchTF.text = ""
         searchedText = ""
+        paginationNumber = 20
         allItems.removeAll()
         searchedItems.removeAll()
         
@@ -142,11 +143,14 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
                 itemCell?.downloadImage(imageKey: imageKey)
             }
             
+            if let name = item.trackName { //if item doesnt have collectionName use trackName
+                itemCell?.nameLabel.text = name
+            }
             if let name = item.collectionName {
                 itemCell?.nameLabel.text = name
             }
             
-            if let price = item.collectionPrice, let currency = searchedItems[indexPath.row].currency {
+            if let price = item.collectionPrice, let currency = item.currency {
                 itemCell?.priceLabel.text = "\(price) \(currency.handleCurrencyFormat())"
             }
             
@@ -203,7 +207,10 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == itemCollectionView {
-            
+            if let detailVC = appDelegate.theStoryboard.instantiateViewController(withIdentifier: "DetailVC") as? DetailViewController {
+                detailVC.searchedSelectedItem = searchedItems[indexPath.row]
+                navigationController?.pushViewController(detailVC, animated: true)
+            }
         }
         else if collectionView == typeCollectionView {
             setSelectedTypeStatus(selectedIndex: indexPath.row)

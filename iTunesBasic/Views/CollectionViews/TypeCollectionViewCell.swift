@@ -27,5 +27,4 @@ class TypeCollectionViewCell: UICollectionViewCell {
         nameLabel.font = UIFont.dancingScriptSemiBold18
         nameLabel.textColor = UIColor.textColour
     }
-
 }

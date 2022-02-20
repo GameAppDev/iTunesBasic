@@ -23,6 +23,4 @@ extension UIFont {
     static let dancingScriptBold20 = UIFont(name: "DancingScript-Bold", size: CGFloat(20).ws)
     static let dancingScriptSemiBold18 = UIFont(name: "DancingScript-SemiBold", size: CGFloat(18).ws)
     static let dancingScriptRegular14 = UIFont(name: "DancingScript-Regular", size: CGFloat(14).ws)
-    
-//    static let dancingScriptMedium24 = UIFont(name: "DancingScript-Medium", size: CGFloat(24).ws)
 }
