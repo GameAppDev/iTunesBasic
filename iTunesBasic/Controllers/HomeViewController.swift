@@ -25,15 +25,14 @@ class HomeViewController: UIViewController {
     @IBOutlet var typeCollectionView: UICollectionView!
     var typeCell:TypeCollectionViewCell?
     
-    var isLoadMore:Bool = true //load more
-    
-    var paginationNumber:Int = 20 //load more
+    var isLoadMore:Bool = true //load more service request control
+    var paginationNumber:Int = 20 //load more, wrong method. it should be pageNumber. when pagination is more than 100, request will take long time
     
     var searchedText:String = "" //to understand searched text when load more
-    var selectedIndex:Int = 0 //to understand which type coll cell is active when load more
+    var selectedTypeIndex:Int = 0 //to understand which type coll cell is active when load more
     
     var searchedItems:[StoreResponse] = [] //for item coll array
-    var allItems:[StoreResponse] = [] //when select type all
+    var allItems:[StoreResponse] = [] //when select type all, filled with response and dont set it, just get
     
     //wrapperType are just track, collection, artistFor. Mostly track so i used kind to filter items
     let kinds:[String] = ["all", "podcast", "music-video", "book", "album", "coached-audio", "feature-movie", "interactive- booklet", "pdf podcast", "podcast-episode", "software-package", "song", "tv-episode", "artistFor"]
@@ -47,16 +46,16 @@ class HomeViewController: UIViewController {
         
         searchTF.delegate = self
         
+        typeCollectionView.contentInset = UIEdgeInsets(top: 0, left: CGFloat(15).ws, bottom: 0, right: CGFloat(15).ws)
+        typeCollectionView.register(UINib(nibName:"TypeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "typeCollCell")
+        typeCollectionView.dataSource = self
+        typeCollectionView.delegate = self
+        
         itemCollectionView.contentInset = UIEdgeInsets(top: CGFloat(15).ws, left: CGFloat(10).ws, bottom: CGFloat(15).ws, right: CGFloat(10).ws)
         itemCollectionView.keyboardDismissMode = .onDrag
         itemCollectionView.register(UINib(nibName:"ItemCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "itemCollCell")
         itemCollectionView.dataSource = self
         itemCollectionView.delegate = self
-        
-        typeCollectionView.contentInset = UIEdgeInsets(top: 0, left: CGFloat(15).ws, bottom: 0, right: CGFloat(15).ws)
-        typeCollectionView.register(UINib(nibName:"TypeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "typeCollCell")
-        typeCollectionView.dataSource = self
-        typeCollectionView.delegate = self
     }
     
     func setupViews() {
@@ -64,6 +63,8 @@ class HomeViewController: UIViewController {
         view.layoutIfNeeded()
         
         navbarView.backgroundColor = UIColor.navbarBGColour
+        
+        navbarLabel.font = UIFont.dancingScriptBold20
         navbarLabel.textColor = UIColor.navbarTextColour
         navbarLabel.text = "iTunes Store"
         
@@ -194,7 +195,8 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if !isLoadMore && searchedItems.count == indexPath.row + 1 && paginationNumber != 20 && (selectedIndex == 0) {
+        if !isLoadMore && (searchedItems.count == indexPath.row + 1) && (searchedItems.count >= 20) {
+            paginationNumber += 20
             getSearchedStoreItems(searchText: searchedText)
         }
     }
@@ -212,7 +214,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         if let index = types.firstIndex(where: {$0.isSelected == true}) {
             types[index].isSelected = false
         }
-        self.selectedIndex = selectedIndex
+        selectedTypeIndex = selectedIndex
         types[selectedIndex].isSelected = true
         filterSearchedItems(type: types[selectedIndex].name)
         typeCollectionView.reloadData()
@@ -222,18 +224,23 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
 extension HomeViewController {
     
     func getSearchedStoreItems(searchText:String) {
-        appDelegate.rootVC.setActivityIndicator(isOn: true)
+        //appDelegate.rootVC.setActivityIndicator(isOn: true)
         isLoadMore = true
         ServiceManager.connected.getStoreItems(term: searchText, country: "TR", limit: paginationNumber) { response, isOK in
             self.isLoadMore = false
-            appDelegate.rootVC.setActivityIndicator(isOn: false)
+            //appDelegate.rootVC.setActivityIndicator(isOn: false)
             if isOK {
                 if let items = response {
-                    self.paginationNumber += 20
                     self.allItems = items
                     self.searchedItems = items
-                    self.setSelectedTypeStatus(selectedIndex: 0)
+                    self.setSelectedTypeStatus(selectedIndex: self.selectedTypeIndex)
                 }
+            }
+            else {
+                self.allItems.removeAll()
+                self.searchedItems.removeAll()
+                
+                self.itemCollectionView.reloadData()
             }
         }
     }
@@ -242,14 +249,25 @@ extension HomeViewController {
 extension HomeViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if var searchText = textField.text {
-            textField.resignFirstResponder()
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let textFieldText = textField.text, let rangeOfTextToReplace = Range(range, in: textFieldText) else { return false }
+        let substringToReplace = textFieldText[rangeOfTextToReplace]
+        let count = textFieldText.count - substringToReplace.count + string.count
+        if count > 2 {
+            var searchText = textFieldText
+            if string == "" { //deleting character
+                searchText.removeLast()
+            }
+            else { //adding character
+                searchText = "\(textFieldText)\(string)"
+            }
             searchText = searchText.replace(string: " ",replacement: "+") //URL-encoded text string
             searchedText = searchText
-            allItems.removeAll()
-            searchedItems.removeAll()
-            selectedIndex = 0
-            paginationNumber = 20
+            print("\(searchText) - \(count)")
             
             getSearchedStoreItems(searchText: searchText)
         }
