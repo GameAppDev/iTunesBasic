@@ -40,18 +40,23 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        setupViews()
-        setTypesData()
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
+        
+        DispatchQueue.main.async {
+            self.setupViews()
+        }
         
         searchTF.delegate = self
         
-        typeCollectionView.contentInset = UIEdgeInsets(top: 0, left: CGFloat(15).ws, bottom: 0, right: CGFloat(15).ws)
+        DispatchQueue.global(qos: .userInitiated).sync {
+            self.setTypesData()
+        }
+        
         typeCollectionView.register(UINib(nibName:"TypeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "typeCollCell")
         typeCollectionView.dataSource = self
         typeCollectionView.delegate = self
         
-        itemCollectionView.contentInset = UIEdgeInsets(top: CGFloat(15).ws, left: CGFloat(10).ws, bottom: CGFloat(15).ws, right: CGFloat(10).ws)
         itemCollectionView.keyboardDismissMode = .onDrag
         itemCollectionView.register(UINib(nibName:"ItemCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "itemCollCell")
         itemCollectionView.dataSource = self
@@ -59,9 +64,6 @@ class HomeViewController: UIViewController {
     }
     
     func setupViews() {
-        view.setNeedsLayout()
-        view.layoutIfNeeded()
-        
         navbarView.backgroundColor = UIColor.navbarBGColour
         
         navbarLabel.font = UIFont.dancingScriptBold20
@@ -73,6 +75,9 @@ class HomeViewController: UIViewController {
         
         searchTF.font = UIFont.dancingScriptRegular14
         searchTF.textColor = UIColor.textColour
+        
+        typeCollectionView.contentInset = UIEdgeInsets(top: 0, left: CGFloat(15).ws, bottom: 0, right: CGFloat(15).ws)
+        itemCollectionView.contentInset = UIEdgeInsets(top: CGFloat(15).ws, left: CGFloat(10).ws, bottom: CGFloat(15).ws, right: CGFloat(10).ws)
     }
     
     func setTypesData() {
@@ -95,7 +100,9 @@ class HomeViewController: UIViewController {
             }
             searchedItems = newItems
         }
-        itemCollectionView.reloadData()
+        DispatchQueue.main.async {
+            self.itemCollectionView.reloadData()
+        }
     }
     
     @IBAction func searchClicked(_ sender: UIButton) {
@@ -110,7 +117,9 @@ class HomeViewController: UIViewController {
         allItems.removeAll()
         searchedItems.removeAll()
         
-        itemCollectionView.reloadData()
+        DispatchQueue.main.async {
+            self.itemCollectionView.reloadData()
+        }
     }
 }
 
@@ -224,18 +233,29 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         selectedTypeIndex = selectedIndex
         types[selectedIndex].isSelected = true
         filterSearchedItems(type: types[selectedIndex].name)
-        typeCollectionView.reloadData()
+        
+        DispatchQueue.main.async {
+            self.typeCollectionView.reloadData()
+        }
     }
 }
 
 extension HomeViewController {
     
     func getSearchedStoreItems(searchText:String) {
-        //appDelegate.rootVC.setActivityIndicator(isOn: true)
+        /*
+        DispatchQueue.main.async {
+            appDelegate.rootVC.setActivityIndicator(isOn: true)
+        }
+        */
         isLoadMore = true
-        ServiceManager.connected.getStoreItems(term: searchText, country: "TR", limit: paginationNumber) { response, isOK in
+        ServiceManager.shared.getStoreItems(term: searchText, country: "TR", limit: paginationNumber) { response, isOK in
             self.isLoadMore = false
-            //appDelegate.rootVC.setActivityIndicator(isOn: false)
+            /*
+            DispatchQueue.main.async {
+                appDelegate.rootVC.setActivityIndicator(isOn: false)
+            }
+            */
             if isOK {
                 if let items = response {
                     self.allItems = items
@@ -247,7 +267,9 @@ extension HomeViewController {
                 self.allItems.removeAll()
                 self.searchedItems.removeAll()
                 
-                self.itemCollectionView.reloadData()
+                DispatchQueue.main.async {
+                    self.itemCollectionView.reloadData()
+                }
             }
         }
     }

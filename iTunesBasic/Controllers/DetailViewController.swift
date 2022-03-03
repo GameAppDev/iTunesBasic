@@ -30,10 +30,13 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        setupViews()
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
         
-        detailsTableView.contentInset = UIEdgeInsets(top: CGFloat(15).ws, left: 0, bottom: CGFloat(15).ws, right: 0)
+        DispatchQueue.main.async {
+            self.setupViews()
+        }
+        
         detailsTableView.registerCell(identifier: identifierI)
         detailsTableView.registerCell(identifier: identifierT)
         detailsTableView.registerCell(identifier: identifierTWB)
@@ -41,14 +44,13 @@ class DetailViewController: UIViewController {
     }
     
     func setupViews() {
-        view.setNeedsLayout()
-        view.layoutIfNeeded()
-        
         navbarView.backgroundColor = UIColor.navbarBGColour
         
         navbarLabel.font = UIFont.dancingScriptBold20
         navbarLabel.textColor = UIColor.navbarTextColour
         navbarLabel.text = "Details"
+        
+        detailsTableView.contentInset = UIEdgeInsets(top: CGFloat(15).ws, left: 0, bottom: CGFloat(15).ws, right: 0)
     }
     
     @objc func urlClicked() {

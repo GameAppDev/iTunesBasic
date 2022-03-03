@@ -14,7 +14,7 @@ import Alamofire
 
 class ServiceManager {
     
-    static let connected = ServiceManager()
+    static let shared = ServiceManager()
     
     let baseUrl:String = "https://itunes.apple.com/"
     

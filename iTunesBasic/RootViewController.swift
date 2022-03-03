@@ -23,8 +23,12 @@ class RootViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        setupViews()
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
+        
+        DispatchQueue.main.async {
+            self.setupViews()
+        }
         
         if let homeNC = appDelegate.theStoryboard.instantiateViewController(withIdentifier: "HomeNC") as? UINavigationController {
             activeNC?.view.removeFromSuperview()
@@ -35,9 +39,6 @@ class RootViewController: UIViewController {
     }
 
     func setupViews() {
-        view.setNeedsLayout()
-        view.layoutIfNeeded()
-        
         topSafeArea.backgroundColor = UIColor.navbarBGColour
         bottomSafeArea.backgroundColor = UIColor.clear
     }
