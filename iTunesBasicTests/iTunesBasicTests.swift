@@ -40,4 +40,15 @@ class iTunesBasicTests: XCTestCase {
         
         XCTAssertEqual(replacedText, "NoNeedEmptySpaces")
     }
+    
+    func testRequestStoreAPI() {
+        let request = StorePost(term: "john", country: "TR", limit: 20)
+        
+        ServiceManager.shared.getStoreItems(term: request.term!, country: request.country!, limit: request.limit!) { response, isOK in
+            
+            XCTAssertNotNil(response)
+            XCTAssertTrue(isOK)
+        }
+        
+    }
 }
