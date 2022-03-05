@@ -43,7 +43,7 @@ class DetailViewController: UIViewController {
         detailsTableView.dataSource = self
     }
     
-    func setupViews() {
+    private func setupViews() {
         navbarView.backgroundColor = UIColor.navbarBGColour
         
         navbarLabel.font = UIFont.dancingScriptBold20

@@ -49,9 +49,7 @@ class HomeViewController: UIViewController {
         
         searchTF.delegate = self
         
-        DispatchQueue.global(qos: .userInitiated).sync {
-            self.setTypesData()
-        }
+        setTypesData()
         
         typeCollectionView.register(UINib(nibName:"TypeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "typeCollCell")
         typeCollectionView.dataSource = self
@@ -63,7 +61,7 @@ class HomeViewController: UIViewController {
         itemCollectionView.delegate = self
     }
     
-    func setupViews() {
+    private func setupViews() {
         navbarView.backgroundColor = UIColor.navbarBGColour
         
         navbarLabel.font = UIFont.dancingScriptBold20
@@ -80,14 +78,14 @@ class HomeViewController: UIViewController {
         itemCollectionView.contentInset = UIEdgeInsets(top: CGFloat(15).ws, left: CGFloat(10).ws, bottom: CGFloat(15).ws, right: CGFloat(10).ws)
     }
     
-    func setTypesData() {
+    private func setTypesData() {
         for (_, item) in kinds.enumerated() {
             let newType = Types(name: item, isSelected: false)
             types.append(newType)
         }
     }
     
-    func filterSearchedItems(type:String) {
+    private func filterSearchedItems(type:String) {
         if type == "all" {
             searchedItems = allItems
         }
@@ -226,7 +224,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         }
     }
     
-    func setSelectedTypeStatus(selectedIndex:Int) {
+    private func setSelectedTypeStatus(selectedIndex:Int) {
         if let index = types.firstIndex(where: {$0.isSelected == true}) {
             types[index].isSelected = false
         }
@@ -242,7 +240,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
 
 extension HomeViewController {
     
-    func getSearchedStoreItems(searchText:String) {
+    private func getSearchedStoreItems(searchText:String) {
         /*
         DispatchQueue.main.async {
             appDelegate.rootVC.setActivityIndicator(isOn: true)
