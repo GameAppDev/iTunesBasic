@@ -16,7 +16,7 @@ class ImageTableViewCell: UITableViewCell {
 
     @IBOutlet var itemImageView: UIImageView!
     
-    let identifierI:String = "ImageTableViewCell"
+    let identifier:String = "ImageTableViewCell"
     
     override func awakeFromNib() {
         super.awakeFromNib()

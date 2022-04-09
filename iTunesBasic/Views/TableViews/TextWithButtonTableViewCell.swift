@@ -16,7 +16,7 @@ class TextWithButtonTableViewCell: UITableViewCell {
     @IBOutlet var urlLabel: UILabel!
     @IBOutlet var urlButton: UIButton!
     
-    let identifierTWB:String = "TextWithButtonTableViewCell"
+    let identifier:String = "TextWithButtonTableViewCell"
     
     override func awakeFromNib() {
         super.awakeFromNib()

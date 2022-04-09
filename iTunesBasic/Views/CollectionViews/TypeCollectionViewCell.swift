@@ -16,7 +16,7 @@ class TypeCollectionViewCell: UICollectionViewCell {
     @IBOutlet var cellView: UIView!
     @IBOutlet var nameLabel: UILabel!
     
-    //typeCollCell
+    let identifier:String = "typeCollCell"
     
     override func awakeFromNib() {
         super.awakeFromNib()

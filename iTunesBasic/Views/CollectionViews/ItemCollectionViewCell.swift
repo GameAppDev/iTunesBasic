@@ -21,7 +21,7 @@ class ItemCollectionViewCell: UICollectionViewCell {
     @IBOutlet var priceLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
     
-    //itemCollCell
+    let identifier:String = "itemCollCell"
     
     override func awakeFromNib() {
         super.awakeFromNib()

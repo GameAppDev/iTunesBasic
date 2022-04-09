@@ -20,23 +20,23 @@ class HomeViewController: UIViewController {
     @IBOutlet var searchTF: UITextField!
     
     @IBOutlet var itemCollectionView: UICollectionView!
-    var itemCell:ItemCollectionViewCell?
+    private var itemCell:ItemCollectionViewCell?
     
     @IBOutlet var typeCollectionView: UICollectionView!
-    var typeCell:TypeCollectionViewCell?
+    private var typeCell:TypeCollectionViewCell?
     
-    var isLoadMore:Bool = true //load more service request control
-    var paginationNumber:Int = 20 //load more, wrong method. it should be pageNumber. when pagination is more than 100, request will take long time
+    private var isLoadMore:Bool = true //load more service request control
+    private var paginationNumber:Int = 20 //load more, wrong method. it should be pageNumber. when pagination is more than 100, request will take long time
     
-    var searchedText:String = "" //to understand searched text when load more
-    var selectedTypeIndex:Int = 0 //to understand which type coll cell is active when load more
+    private var searchedText:String = "" //to understand searched text when load more
+    private var selectedTypeIndex:Int = 0 //to understand which type coll cell is active when load more
     
-    var searchedItems:[StoreResponse] = [] //for item coll array
-    var allItems:[StoreResponse] = [] //when select type all, filled with response and dont set it, just get
+    private var searchedItems:[StoreResponse] = [] //for item coll array
+    private var allItems:[StoreResponse] = [] //when select type all, filled with response and dont set it, just get
     
     //wrapperType are just track, collection, artistFor. Mostly track so i used kind to filter items
-    let kinds:[String] = ["all", "podcast", "music-video", "book", "album", "coached-audio", "feature-movie", "interactive- booklet", "pdf podcast", "podcast-episode", "software-package", "song", "tv-episode", "artistFor"]
-    var types:[Types] = []
+    private let kinds:[String] = ["all", "podcast", "music-video", "book", "album", "coached-audio", "feature-movie", "interactive- booklet", "pdf podcast", "podcast-episode", "software-package", "song", "tv-episode", "artistFor"]
+    private var types:[Types] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,12 +51,12 @@ class HomeViewController: UIViewController {
         
         setTypesData()
         
-        typeCollectionView.register(UINib(nibName:"TypeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "typeCollCell")
+        typeCollectionView.register(UINib(nibName:"TypeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: TypeCollectionViewCell().identifier)
         typeCollectionView.dataSource = self
         typeCollectionView.delegate = self
         
         itemCollectionView.keyboardDismissMode = .onDrag
-        itemCollectionView.register(UINib(nibName:"ItemCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "itemCollCell")
+        itemCollectionView.register(UINib(nibName:"ItemCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: ItemCollectionViewCell().identifier)
         itemCollectionView.dataSource = self
         itemCollectionView.delegate = self
     }
@@ -73,9 +73,6 @@ class HomeViewController: UIViewController {
         
         searchTF.font = UIFont.dancingScriptRegular14
         searchTF.textColor = UIColor.textColour
-        
-        typeCollectionView.contentInset = UIEdgeInsets(top: 0, left: CGFloat(15).ws, bottom: 0, right: CGFloat(15).ws)
-        itemCollectionView.contentInset = UIEdgeInsets(top: CGFloat(15).ws, left: CGFloat(10).ws, bottom: CGFloat(15).ws, right: CGFloat(10).ws)
     }
     
     private func setTypesData() {
@@ -142,7 +139,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == itemCollectionView {
-            itemCell = collectionView.dequeueReusableCell(withReuseIdentifier: "itemCollCell", for: indexPath) as? ItemCollectionViewCell
+            itemCell = collectionView.dequeueReusableCell(withReuseIdentifier: ItemCollectionViewCell().identifier, for: indexPath) as? ItemCollectionViewCell
             
             let item = searchedItems[indexPath.row]
             
@@ -171,7 +168,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         }
         
         else if collectionView == typeCollectionView {
-            typeCell = collectionView.dequeueReusableCell(withReuseIdentifier: "typeCollCell", for: indexPath) as? TypeCollectionViewCell
+            typeCell = collectionView.dequeueReusableCell(withReuseIdentifier: TypeCollectionViewCell().identifier, for: indexPath) as? TypeCollectionViewCell
             
             let type = types[indexPath.row]
             
@@ -203,6 +200,16 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         }
         
         return CGSize(width: 0, height: 0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        if collectionView == typeCollectionView {
+            return UIEdgeInsets(top: 0, left: CGFloat(15).ws, bottom: 0, right: CGFloat(15).ws)
+        }
+        else if collectionView == itemCollectionView {
+            return UIEdgeInsets(top: CGFloat(15).ws, left: CGFloat(10).ws, bottom: CGFloat(15).ws, right: CGFloat(10).ws)
+        }
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -241,19 +248,9 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
 extension HomeViewController {
     
     private func getSearchedStoreItems(searchText:String) {
-        /*
-        DispatchQueue.main.async {
-            appDelegate.rootVC.setActivityIndicator(isOn: true)
-        }
-        */
         isLoadMore = true
         ServiceManager.shared.getStoreItems(term: searchText, country: "TR", limit: paginationNumber) { response, isOK in
             self.isLoadMore = false
-            /*
-            DispatchQueue.main.async {
-                appDelegate.rootVC.setActivityIndicator(isOn: false)
-            }
-            */
             if isOK {
                 if let items = response {
                     self.allItems = items

@@ -17,9 +17,9 @@ class RootViewController: UIViewController {
     @IBOutlet var topSafeArea: UIView!
     @IBOutlet var bottomSafeArea: UIView!
     
-    var activeNC:UINavigationController?
+    private var activeNC:UINavigationController?
     
-    var activity:XActivityView?
+    private var activity:XActivityView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,24 +35,39 @@ class RootViewController: UIViewController {
             activeView.addSubview(homeNC.view!)
             
             activeNC = homeNC
+            
+            activeNC?.interactivePopGestureRecognizer?.delegate = self
         }
     }
 
-    func setupViews() {
+    private func setupViews() {
         topSafeArea.backgroundColor = UIColor.navbarBGColour
         bottomSafeArea.backgroundColor = UIColor.clear
     }
     
     func setActivityIndicator(isOn:Bool) {
-        if isOn {
-            activity = XActivityView(frame: self.view.frame)
-            view.addSubview(activity!)
-        }
-        else {
-            if activity != nil && activity?.theActivity != nil {
-                activity?.theActivity.stopAnimating()
-                activity?.removeFromSuperview()
+        DispatchQueue.main.async { [self] in
+            if isOn {
+                activity = XActivityView(frame: self.view.frame)
+                view.addSubview(activity!)
+            }
+            else {
+                if activity != nil && activity?.theActivity != nil {
+                    activity?.theActivity.stopAnimating()
+                    activity?.removeFromSuperview()
+                }
             }
         }
+    }
+}
+
+extension RootViewController: UIGestureRecognizerDelegate {
+
+    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+        activeNC?.interactivePopGestureRecognizer?.isEnabled = true
+    }
+
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }

@@ -25,7 +25,7 @@ class TextTableViewCell: UITableViewCell {
 
     @IBOutlet var theLabel: UILabel!
     
-    let identifierT:String = "TextTableViewCell"
+    let identifier:String = "TextTableViewCell"
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -17,16 +17,13 @@ class DetailViewController: UIViewController {
     @IBOutlet var navbarLabel: UILabel!
     
     @IBOutlet var detailsTableView: UITableView!
-    let identifierI:String = "ImageTableViewCell"
-    var imageCell:ImageTableViewCell?
-    let identifierT:String = "TextTableViewCell"
-    var textCell:TextTableViewCell?
-    let identifierTWB:String = "TextWithButtonTableViewCell"
-    var buttonTextCell:TextWithButtonTableViewCell?
+    private var imageCell:ImageTableViewCell?
+    private var textCell:TextTableViewCell?
+    private var buttonTextCell:TextWithButtonTableViewCell?
     
-    var searchedSelectedItem:StoreResponse? //from previous
+    var searchedSelectedItem:StoreResponse? //previous
     
-    let tableCount:Int = 9
+    private let tableCount:Int = 9
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,9 +34,9 @@ class DetailViewController: UIViewController {
             self.setupViews()
         }
         
-        detailsTableView.registerCell(identifier: identifierI)
-        detailsTableView.registerCell(identifier: identifierT)
-        detailsTableView.registerCell(identifier: identifierTWB)
+        detailsTableView.registerCell(identifier: ImageTableViewCell().identifier)
+        detailsTableView.registerCell(identifier: TextTableViewCell().identifier)
+        detailsTableView.registerCell(identifier: TextWithButtonTableViewCell().identifier)
         detailsTableView.dataSource = self
     }
     
@@ -73,7 +70,7 @@ extension DetailViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
-            imageCell = tableView.dequeueReusableCell(withIdentifier: identifierI, for: indexPath) as? ImageTableViewCell
+            imageCell = tableView.dequeueReusableCell(withIdentifier: ImageTableViewCell().identifier, for: indexPath) as? ImageTableViewCell
             
             if let imageKey = searchedSelectedItem?.artworkUrl100 {
                 imageCell?.downloadImage(imageKey: imageKey)
@@ -82,7 +79,7 @@ extension DetailViewController: UITableViewDataSource {
             return imageCell!
         }
         else if indexPath.row == 1 {
-            textCell = tableView.dequeueReusableCell(withIdentifier: identifierT, for: indexPath) as? TextTableViewCell
+            textCell = tableView.dequeueReusableCell(withIdentifier: TextTableViewCell().identifier, for: indexPath) as? TextTableViewCell
             
             textCell?.setupLabelWith(status: .Title)
             if let title = searchedSelectedItem?.trackName { //if item doesnt have collectionName use trackName
@@ -95,7 +92,7 @@ extension DetailViewController: UITableViewDataSource {
             return textCell!
         }
         else if indexPath.row == 2 {
-            textCell = tableView.dequeueReusableCell(withIdentifier: identifierT, for: indexPath) as? TextTableViewCell
+            textCell = tableView.dequeueReusableCell(withIdentifier: TextTableViewCell().identifier, for: indexPath) as? TextTableViewCell
             
             textCell?.setupLabelWith(status: .Description)
             if let desc = searchedSelectedItem?.longDescription {
@@ -105,7 +102,7 @@ extension DetailViewController: UITableViewDataSource {
             return textCell!
         }
         else if indexPath.row == 3 {
-            textCell = tableView.dequeueReusableCell(withIdentifier: identifierT, for: indexPath) as? TextTableViewCell
+            textCell = tableView.dequeueReusableCell(withIdentifier: TextTableViewCell().identifier, for: indexPath) as? TextTableViewCell
             
             textCell?.setupLabelWith(status: .Kind)
             if let kind = searchedSelectedItem?.kind {
@@ -115,7 +112,7 @@ extension DetailViewController: UITableViewDataSource {
             return textCell!
         }
         else if indexPath.row == 4 {
-            textCell = tableView.dequeueReusableCell(withIdentifier: identifierT, for: indexPath) as? TextTableViewCell
+            textCell = tableView.dequeueReusableCell(withIdentifier: TextTableViewCell().identifier, for: indexPath) as? TextTableViewCell
             
             textCell?.setupLabelWith(status: .Artist)
             if let artist = searchedSelectedItem?.artistName {
@@ -125,7 +122,7 @@ extension DetailViewController: UITableViewDataSource {
             return textCell!
         }
         else if indexPath.row == 5 {
-            textCell = tableView.dequeueReusableCell(withIdentifier: identifierT, for: indexPath) as? TextTableViewCell
+            textCell = tableView.dequeueReusableCell(withIdentifier: TextTableViewCell().identifier, for: indexPath) as? TextTableViewCell
             
             textCell?.setupLabelWith(status: .Price)
             if let price = searchedSelectedItem?.collectionPrice, let currency = searchedSelectedItem?.currency {
@@ -135,7 +132,7 @@ extension DetailViewController: UITableViewDataSource {
             return textCell!
         }
         else if indexPath.row == 6 {
-            textCell = tableView.dequeueReusableCell(withIdentifier: identifierT, for: indexPath) as? TextTableViewCell
+            textCell = tableView.dequeueReusableCell(withIdentifier: TextTableViewCell().identifier, for: indexPath) as? TextTableViewCell
             
             textCell?.setupLabelWith(status: .Country)
             if let country = searchedSelectedItem?.country {
@@ -145,7 +142,7 @@ extension DetailViewController: UITableViewDataSource {
             return textCell!
         }
         else if indexPath.row == 7 {
-            textCell = tableView.dequeueReusableCell(withIdentifier: identifierT, for: indexPath) as? TextTableViewCell
+            textCell = tableView.dequeueReusableCell(withIdentifier: TextTableViewCell().identifier, for: indexPath) as? TextTableViewCell
             
             textCell?.setupLabelWith(status: .Date)
             if let publishedDate = searchedSelectedItem?.releaseDate {
@@ -157,7 +154,7 @@ extension DetailViewController: UITableViewDataSource {
             return textCell!
         }
         else if indexPath.row == 8 {
-            buttonTextCell = tableView.dequeueReusableCell(withIdentifier: identifierTWB, for: indexPath) as? TextWithButtonTableViewCell
+            buttonTextCell = tableView.dequeueReusableCell(withIdentifier: TextWithButtonTableViewCell().identifier, for: indexPath) as? TextWithButtonTableViewCell
             
             if let url = searchedSelectedItem?.collectionViewUrl {
                 buttonTextCell?.urlLabel.textColor = UIColor.selectedTextColour
